@@ -2,8 +2,6 @@ package Mapper;
 
 
 import dto.BoardDTO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -16,4 +14,8 @@ public interface BoardMapper {
     public void insertSelectkey(BoardDTO dto);
 
     public BoardDTO read(Long bno);
+
+    public int delete(Long bno);
+
+    public int update(BoardDTO dto);
 }

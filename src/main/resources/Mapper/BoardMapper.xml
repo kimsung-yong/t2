@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!--suppress ALL -->
 <mapper namespace="Mapper.BoardMapper">
 
     <select id="getList" resultType="dto.BoardDTO">
@@ -22,4 +23,17 @@
     <select id="read" resultType="dto.BoardDTO">
         select * from tbl_board where bno= #{bno}
     </select>
+
+    <delete id="delete">
+        delete from tbl_board where bno = #{bno}
+    </delete>
+
+    <update id="update">
+        update tbl_board
+        set title = #{title},
+            content = #{title},
+            writer = #{writer},
+            updateDate = sysdate
+            where bno= #{bno}
+    </update>
 </mapper>

@@ -29,6 +29,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.18.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.18.RELEASE" />
+          <element id="library" level="project" name="ojdbc8" />
         </element>
       </element>
     </root>
