@@ -3,7 +3,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="../includes/header.jsp"%>
 
-            <div class="row">
+             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Tables</h1>
                 </div>
@@ -40,10 +40,11 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-
-        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <!-- /#page-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
 <%@include file="../includes/footer.jsp"%>
