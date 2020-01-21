@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Map;
+
 @Controller
 @Log4j
 @RequestMapping("/board/*")
@@ -26,10 +28,11 @@ public class BoardController {
         log.info("list");
         model.addAttribute("list",service.getList());
     }
-    @GetMapping("/get")
+    @GetMapping({"/get","/modify"})
     public void get(@RequestParam("bno") Long bno, Model model){
         log.info("/get");
         model.addAttribute("board",service.get(bno));
+
     }
     @PostMapping("/modify")
     public String modify(BoardDTO board, RedirectAttributes rttr){
@@ -48,5 +51,11 @@ public class BoardController {
         }
         return "redirect:/board/list";
     }
-
+    @PostMapping("/register")
+    public String insert(BoardDTO board, RedirectAttributes rttr){
+        log.info("insert...." + board);
+        service.register(board);
+        rttr.addFlashAttribute("result",board.getBno());
+        return "redirect:/board/list";
+    }
 }

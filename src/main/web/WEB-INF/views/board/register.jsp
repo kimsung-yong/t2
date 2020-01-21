@@ -18,7 +18,22 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <form role="form"></form>
+                            <form role="form" action="/board/register" method="post">
+                                <div class="form=group">
+                                    <label>title</label>
+                                    <input class="form-control" name="title">
+                                </div>
+                                <div class="form-group">
+                                    <label>Text area</label>
+                                    <textarea class="form-control" rows="3" name="content"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Writer</label>
+                                    <input type="text" name="writer" class="form-control">
+                                </div>
+                                <button type="submit" class="btn btn-default">저장</button>
+                                <button type="reset" class="btn btn-default">재작성</button>
+                            </form>
                         </div>
                     </div>
                 </div>

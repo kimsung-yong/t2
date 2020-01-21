@@ -47,4 +47,6 @@ public class BoardServicelmpl implements BoardService{
         log.info("getList.................................");
         return mapper.getList();
     }
+
+
 }
