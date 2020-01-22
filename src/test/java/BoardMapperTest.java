@@ -1,5 +1,6 @@
 import Mapper.BoardMapper;
-import dto.BoardDTO;
+import domain.BoardDTO;
+import domain.Criteria;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
@@ -7,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/spring/applicationContext.xml")
@@ -18,7 +21,13 @@ public class BoardMapperTest {
     @Test
     public void testGetList(){
         mapper.getList().forEach(boardDTO -> log.info(boardDTO));
+
     }
+    @Test
+    public void testCount(){
+        mapper.getCount();
+    }
+
     @Test
     public void testInsert(){
 
@@ -63,4 +72,14 @@ public class BoardMapperTest {
         int count = mapper.update(dto);
         log.info(count);
     }
+    @Test
+    public void testPaging(){
+        Criteria cri = new Criteria(2,10);
+
+        List<BoardDTO> list = mapper.getListWithPaging(cri);
+
+        list.forEach(boardDTO -> log.info(boardDTO));
+    }
+
+
 }

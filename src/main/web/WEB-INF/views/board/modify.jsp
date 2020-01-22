@@ -38,8 +38,9 @@
                             <div class="form-group">
                             <label>작성자</label> <input class="form-control" name="writer" value="<c:out value="${board.writer}"/>">
                             </div>
-                            <input type="submit" value="저장" class="btn btn-default">
-                            <a href="/board/list"><button data-oper="list" class="btn btn-info">목록</button></a>
+                                <button data-oper="modify" type="submit" class="btn btn-danger">저장</button>
+                                <button data-oper="remove" type="submit" class="btn btn-danger">삭제</button>
+                                <button data-oper="list" type="submit" class="btn btn-danger">목록</button>
                             </form>
                         </div>
 
@@ -47,6 +48,29 @@
                 </div>
             </div>
         <!-- /#page-wrapper -->
-
     </div>
+    <script>
+        $(document).ready(function () {
+            var formObj = $("form");
+            
+            $('button').on("click",function (e) {
+
+                e.preventDefault();
+
+                var operation = $(this).data("oper");
+
+                console.log(operation);
+
+                if(operation === 'remove'){
+                    formObj.attr("action", "/board/remove");
+                }else if (operation === 'list'){
+                    // self.location = "/board/list";
+                    formObj.attr("action","/board/list").attr("method","get");
+                    formObj.empty();
+                }
+                formObj.submit();
+            });
+            
+        });
+    </script>
 <%@include file="../includes/footer.jsp"%>

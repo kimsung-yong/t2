@@ -1,7 +1,8 @@
 package Service;
 
 import Mapper.BoardMapper;
-import dto.BoardDTO;
+import domain.BoardDTO;
+import domain.Criteria;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
@@ -43,9 +44,14 @@ public class BoardServicelmpl implements BoardService{
     }
 
     @Override
-    public List<BoardDTO> getList() {
+    public List<BoardDTO> getList(Criteria cri) {
         log.info("getList.................................");
-        return mapper.getList();
+        return mapper.getListWithPaging(cri);
+    }
+
+    @Override
+    public int getCount() {
+        return mapper.getCount();
     }
 
 

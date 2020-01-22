@@ -1,5 +1,6 @@
 import Service.BoardService;
-import dto.BoardDTO;
+import domain.BoardDTO;
+import domain.Criteria;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +36,8 @@ public class BoardServiceTests {
     }
     @Test
     public void tsetGetList(){
-        service.getList().forEach(boardDTO -> log.info(boardDTO));
+//        service.getList().forEach(boardDTO -> log.info(boardDTO));
+        service.getList(new Criteria(10,10)).forEach(boardDTO -> log.info(boardDTO));
     }
     @Test
     public void testGet(){

@@ -37,9 +37,12 @@
                             <label>작성자</label> <input class="form-control" name="writer" value="<c:out value="${board.writer}"/>" readonly="readonly">
                             </div>
 
-                            <a href="/board/modify?bno=${board.bno}"><button data-oper="modify" class="btn btn-default" onclick="">수정</button></a>
-                            <a href="/board/list"><button data-oper="list" class="btn btn-info">목록</button></a>
+                           <button data-oper="modify" class="btn btn-default">수정</button>
+                           <button data-oper="list" class="btn btn-info">목록</button>
 
+                            <form id="operForm" action="board/modify" method="get">
+                                <input type="hidden" id="bno" name="bno" value="<c:out value="${board.bno}" />"/>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -47,4 +50,19 @@
         <!-- /#page-wrapper -->
 
     </div>
+<script>
+    $(document).ready(function () {
+        var operForm = $("#operForm");
+        ($("button[data-oper='modify']")).on("click",function (e) {
+            operForm.attr("action","/board/modify").submit();
+        });
+
+        $("button[data-oper='list']").on("click",function(e) {
+            operForm.find("#bno").remove();
+            operForm.attr("action","/board/list");
+            operForm.submit();
+    })
+        
+    })
+</script>
 <%@include file="../includes/footer.jsp"%>
