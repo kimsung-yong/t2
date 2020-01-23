@@ -32,6 +32,7 @@ public class BoardController {
 
         log.info("list");
         model.addAttribute("list",service.getList(cri));
+//        model.addAttribute("pageMaker",new PageDTO(cri,132));
         model.addAttribute("pageMaker",new PageDTO(cri,service.getCount()));
     }
 

@@ -18,7 +18,9 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+<%--                            table table-striped table-bordered table-hover--%>
+<%--                            dataTables-example--%>
+                            <table width="100%" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>글번호</th>
@@ -32,15 +34,43 @@
                                     <c:forEach items="${list}" var="board">
                                         <tr>
                                             <td><c:out value="${board.bno}"/> </td>
-                                            <td><a href="/board/get?bno=<c:out value="${board.bno}"/> "><c:out value="${board.title}"/></a> </td>
+<%--                                            /board/get?bno=<c:out value="${board.bno}"/> --%>
+                                            <td><a href="#" id="detailPage">
+                                                <c:out value="${board.title}"/></a> </td>
                                             <td><c:out value="${board.writer}"/> </td>
-                                            <td><fmt:formatDate value="${board.regdate}" pattern="yyyy-mm-dd"/> </td>
-                                            <td><fmt:formatDate value="${board.updateDate}" pattern="yyyy-mm-dd"/> </td>
+                                            <td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd"/> </td>
+                                            <td><fmt:formatDate value="${board.updateDate}" pattern="yyyy-MM-dd"/> </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
-                            <button type="button" class="btn btn-xs" style="float: right" onclick="regloc()">글작성</button>
+                            <form id="actionForm" action="/board/list" method="get">
+                                <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                                <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                                <input type="hidden" name="bno" value="${board.bno}">
+                            </form>
+                            <div class="pull-right">
+                                <ul class="pagination">
+                                    <c:if test="${pageMaker.prev}">
+                                        <li class="paginate_button previous"><a href="${pageMaker.startPage -10}">◀</a></li>
+                                    </c:if>
+                                    <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+<%--                                            ${pageMaker.cri.pageNum = num ? "active":""}--%>
+<%--                                        ${pageMaker.cri.pageNum == num ? "active" : ""}--%>
+<%--                                            /board/list?pageNum=${num}--%>
+                                        <li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""}" >
+                                            <a href="${num}">${num}</a>
+                                        </li>
+                                    </c:forEach>
+                                    <c:if test="${pageMaker.next}">
+                                        <li class="paginate_button next">
+                                            <a href="${pageMaker.endPage +1}">▶</a>
+                                        </li>
+                                    </c:if>
+                                </ul>
+
+                            </div>
+                            <button type="button" class="btn btn-default" style="float: left" onclick="regloc()">글작성</button>
                              <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -90,6 +120,21 @@
 
             $("#myModal").modal("show");
         }
-    })
+        var actionForm = $("#actionForm");
+
+        $(".paginate_button a").on("click",function (e) {
+            e.preventDefault();
+
+            console.log("click");
+
+            actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+            actionForm.submit();
+        });
+        
+        $("#detailPage").on("click",function (e) {
+            e.preventDefault();
+            actionForm.attr("action","/board/")
+        })
+    });
 </script>
 <%@include file="../includes/footer.jsp"%>

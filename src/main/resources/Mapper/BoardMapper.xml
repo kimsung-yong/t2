@@ -6,7 +6,7 @@
 
     <select id="getList" resultType="domain.BoardDTO">
     <![CDATA[
-        select * from tbl_board where bno > 0 order by bno desc]]>
+        select * from tbl_board]]>
     </select>
 
     <select id="getListWithPaging" resultType="domain.BoardDTO">

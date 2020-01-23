@@ -58,8 +58,8 @@
         });
 
         $("button[data-oper='list']").on("click",function(e) {
-            operForm.find("#bno").remove();
-            operForm.attr("action","/board/list");
+            // operForm.find("#bno").remove();
+            operForm.attr("action","/board/list?pageNum=${pageNum})");
             operForm.submit();
     })
         

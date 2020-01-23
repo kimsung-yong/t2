@@ -74,7 +74,7 @@ public class BoardMapperTest {
     }
     @Test
     public void testPaging(){
-        Criteria cri = new Criteria(2,10);
+        Criteria cri = new Criteria(1,10);
 
         List<BoardDTO> list = mapper.getListWithPaging(cri);
 
