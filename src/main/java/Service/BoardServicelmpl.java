@@ -50,8 +50,8 @@ public class BoardServicelmpl implements BoardService{
     }
 
     @Override
-    public int getCount() {
-        return mapper.getCount();
+    public int getCount(Criteria cri) {
+        return mapper.getCount(cri);
     }
 
 

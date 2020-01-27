@@ -22,7 +22,7 @@ public interface BoardMapper {
 
     public int update(BoardDTO dto);
 
-    public int getCount();
+    public int getCount(Criteria cri);
 
 
 }

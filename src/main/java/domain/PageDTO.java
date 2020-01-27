@@ -7,6 +7,8 @@ public class PageDTO {
 
     private int startPage;
     private int endPage;
+    private int realEnd;
+    private int realStart = 1;
     private boolean prev,next;
 
     private int total;
@@ -20,7 +22,7 @@ public class PageDTO {
         this.endPage = (int)(Math.ceil(cri.getPageNum() / 10.0)) * 10;
         this.startPage = this.endPage -9;
 
-        int realEnd = (int)(Math.ceil((total * 1.0) / cri.getAmount()));
+        this.realEnd = (int)(Math.ceil((total * 1.0) / cri.getAmount()));
 
         if(realEnd < this.endPage){
             this.endPage = realEnd;
@@ -30,4 +32,6 @@ public class PageDTO {
         this.next = this.endPage < realEnd;
 
     }
+
+
 }

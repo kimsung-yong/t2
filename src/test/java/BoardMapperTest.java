@@ -25,7 +25,8 @@ public class BoardMapperTest {
     }
     @Test
     public void testCount(){
-        mapper.getCount();
+        Criteria cri = new Criteria();
+        mapper.getCount(cri);
     }
 
     @Test
@@ -80,6 +81,16 @@ public class BoardMapperTest {
 
         list.forEach(boardDTO -> log.info(boardDTO));
     }
+    @Test
+    public void testSearch(){
 
+        Criteria cri = new Criteria();
+        cri.setKeyword("처음");
+        cri.setType("TC");
+
+        List<BoardDTO> list = mapper.getListWithPaging(cri);
+
+        list.forEach(boardDTO -> log.info(boardDTO));
+    }
 
 }

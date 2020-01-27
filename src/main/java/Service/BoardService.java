@@ -18,7 +18,7 @@ public interface BoardService {
 //    public List<BoardDTO> getList();
     public List<BoardDTO> getList(Criteria cri);
 
-    public int getCount();
+    public int getCount(Criteria cri);
 
 
 }

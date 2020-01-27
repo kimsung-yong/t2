@@ -60,13 +60,27 @@
                 var operation = $(this).data("oper");
 
                 console.log(operation);
-
-                if(operation === 'remove'){
+                if(operation === 'modify'){
+                    // e.preventDefault();
+                    formObj.append("<input type='hidden' name='pageNum' value='${cri.pageNum}'>");
+                    formObj.append("<input type='hidden' name='amount' value='${cri.amount}'>");
+                    formObj.append("<input type='hidden' name='type' value='${cri.type}'>");
+                    formObj.append("<input type='hidden' name='keyword' value='${cri.keyword}'>");
+                }else if(operation === 'remove'){
                     formObj.attr("action", "/board/remove");
+                    formObj.append("<input type='hidden' name='pageNum' value='${cri.pageNum}'>");
+                    formObj.append("<input type='hidden' name='amount' value='${cri.amount}'>");
+                    formObj.append("<input type='hidden' name='type' value='${cri.type}'>");
+                    formObj.append("<input type='hidden' name='keyword' value='${cri.keyword}'>");
                 }else if (operation === 'list'){
                     // self.location = "/board/list";
                     formObj.attr("action","/board/list").attr("method","get");
                     formObj.empty();
+                    formObj.append("<input type='hidden' name='pageNum' value='${cri.pageNum}'>");
+                    formObj.append("<input type='hidden' name='amount' value='${cri.amount}'>");
+                    formObj.append("<input type='hidden' name='type' value='${cri.type}'>");
+                    formObj.append("<input type='hidden' name='keyword' value='${cri.keyword}'>");
+
                 }
                 formObj.submit();
             });
